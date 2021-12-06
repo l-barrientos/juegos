@@ -100,4 +100,36 @@ function gameOver() {
     clearInterval(i);
   }
   finished = true;
+  saveScore();
+}
+
+function getCookie(cName) {
+  const name = cName + "=";
+  const cDecoded = decodeURIComponent(document.cookie); //to be careful
+  const cArr = cDecoded.split("; ");
+  let res;
+  cArr.forEach((val) => {
+    if (val.indexOf(name) === 0) res = val.substring(name.length);
+  });
+  return res;
+}
+function saveScore() {
+  let userName = getCookie("user").userName;
+  let score = parseInt(document.getElementById("score").innerHTML.substr(8));
+  let time = parseFloat(
+    document.getElementById("time").innerHTML.substr(8),
+  ).toFixed(2);
+
+  let userObj = {
+    userName: userName,
+    score: score,
+    time: time,
+  };
+
+  jsonScore = JSON.stringify(userObj);
+  var blob = new Blob([jsonScore], {
+    type: "text/plain;charset=utf-8",
+  });
+
+  saveAs(blob, "scores.json");
 }
