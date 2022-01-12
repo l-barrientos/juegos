@@ -13,8 +13,8 @@
   <!-- Form to sign in with credentials -->
   <form action="process_login.php" method="post" id='signInForm' class="signForms">
     <h2>Iniciar Sesión</h2>
-    <label for="user_name">Usuario:</label>
-    <input type="text" name="user_name" id="user_name" />
+    <label for="userName">Usuario:</label>
+    <input type="text" name="userName" id="userName" />
     <br />
     <label for="password">Contraseña: </label>
     <input type="password" name="password" id="password" />
