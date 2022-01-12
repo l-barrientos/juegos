@@ -63,7 +63,7 @@ function updateTime() {
   timeDiv.innerHTML = "Tiempo: " + time.toFixed(2);
 }
 
-function gameOver() {
+async function gameOver() {
   let gameOverDiv = document.createElement("div");
   gameOverDiv.setAttribute("id", "gameOverDiv");
   gameOverDiv.setAttribute("class", "finish");
@@ -78,7 +78,7 @@ function gameOver() {
   );
   gameOverP2.appendChild(gameOverNode2);
 
-  let score = document.getElementById("score").innerHTML.substr(8);
+  let score = document.getElementById("score").innerHTML.substring(8);
   let gameOverP3 = document.createElement("p");
   let gameOverNode3 = document.createTextNode("Puntuación: " + score);
   gameOverP3.appendChild(gameOverNode3);
@@ -89,10 +89,14 @@ function gameOver() {
   reloadButton.addEventListener("click", () => {
     location.reload();
   });
+  let gameOverP4 = document.createElement("p");
+  let gameOverNode4 = document.createTextNode("Datos guardados en 3...");
+  gameOverP4.appendChild(gameOverNode4);
 
   gameOverDiv.appendChild(gameOverP1);
   gameOverDiv.appendChild(gameOverP2);
   gameOverDiv.appendChild(gameOverP3);
+  gameOverDiv.appendChild(gameOverP4);
   gameOverDiv.appendChild(reloadButton);
   document.body.appendChild(gameOverDiv);
 
@@ -100,6 +104,11 @@ function gameOver() {
     clearInterval(i);
   }
   finished = true;
+  await sleep(1000);
+  gameOverP4.innerHTML = "Datos guardados en 2...";
+  await sleep(1000);
+  gameOverP4.innerHTML = "Datos guardados en 1...";
+  await sleep(1000);
   saveScore();
 }
 
@@ -114,22 +123,12 @@ function getCookie(cName) {
   return res;
 }
 function saveScore() {
-  let userName = getCookie("user").userName;
-  let score = parseInt(document.getElementById("score").innerHTML.substr(8));
+  let userName = JSON.parse(getCookie("user")).userName;
+  let score = parseInt(document.getElementById("score").innerHTML.substring(8));
   let time = parseFloat(
-    document.getElementById("time").innerHTML.substr(8),
+    document.getElementById("time").innerHTML.substring(8),
   ).toFixed(2);
 
-  let userObj = {
-    userName: userName,
-    score: score,
-    time: time,
-  };
-
-  jsonScore = JSON.stringify(userObj);
-  var blob = new Blob([jsonScore], {
-    type: "text/plain;charset=utf-8",
-  });
-
-  saveAs(blob, "scores.json");
+  window.location =
+    "save_score.php?userName=" + userName + "&score=" + score + "&time=" + time;
 }
