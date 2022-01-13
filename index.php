@@ -1,7 +1,12 @@
 <?php if (isset($_POST['logout'])) {
   setcookie("user", "", time() - 3600);
   unset($_COOKIE['user']);
-} ?>
+}
+
+if (isset($_COOKIE['user'])) {
+  header('location:menu/');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
