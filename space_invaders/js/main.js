@@ -33,7 +33,7 @@ function startGame() {
     } while (x <= 200);
 
     if (parseInt(invadersCount / 100) != aux) {
-      invadersV += 0.15;
+      invadersV += 0.25;
       respawnTime -= 400;
       aux = parseInt(invadersCount / 100);
     }
