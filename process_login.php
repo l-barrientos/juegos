@@ -9,7 +9,7 @@ if (isset($_POST['signInSubmit'])) {
 
     // Check whether credentials are right
     foreach ($users_array as $user) {
-        if ($_POST['userName'] == $user['userName'] && $_POST['password'] == $user['password']) {
+        if ($_POST['userName'] == $user['userName'] && password_verify($_POST['password'], $user['password'])) {
             $validUser = true;
             break;
         }
@@ -47,7 +47,7 @@ if (isset($_POST['signInSubmit'])) {
         } else {
             $profileImageSrc = 'profile_images/default.png';
         }
-        $newUser = new User($_POST['newUserName'], $_POST['newPassword'], $profileImageSrc);
+        $newUser = new User($_POST['newUserName'], password_hash($_POST['newPassword'], PASSWORD_DEFAULT), $profileImageSrc);
         setcookie("user", json_encode($newUser), time() + 60 * 60 * 24);
         header('Location:menu/');
         array_push($users_array, $newUser);

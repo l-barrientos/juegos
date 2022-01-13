@@ -71,10 +71,10 @@ async function gameOver() {
   let gameOverNode1 = document.createTextNode("GAME OVER");
   gameOverP1.appendChild(gameOverNode1);
 
-  let time = document.getElementById("time").innerHTML.substr(8);
+  let time = document.getElementById("time").innerHTML.substring(8);
   let gameOverP2 = document.createElement("p");
   let gameOverNode2 = document.createTextNode(
-    "Has durado " + time + " segundos",
+    "Has durado " + time + " segundos"
   );
   gameOverP2.appendChild(gameOverNode2);
 
@@ -90,7 +90,7 @@ async function gameOver() {
     location.reload();
   });
   let gameOverP4 = document.createElement("p");
-  let gameOverNode4 = document.createTextNode("Datos guardados en 3...");
+  let gameOverNode4 = document.createTextNode("Datos guardados en 5...");
   gameOverP4.appendChild(gameOverNode4);
 
   gameOverDiv.appendChild(gameOverP1);
@@ -104,6 +104,10 @@ async function gameOver() {
     clearInterval(i);
   }
   finished = true;
+  await sleep(1000);
+  gameOverP4.innerHTML = "Datos guardados en 4...";
+  await sleep(1000);
+  gameOverP4.innerHTML = "Datos guardados en 3...";
   await sleep(1000);
   gameOverP4.innerHTML = "Datos guardados en 2...";
   await sleep(1000);
@@ -126,9 +130,15 @@ function saveScore() {
   let userName = JSON.parse(getCookie("user")).userName;
   let score = parseInt(document.getElementById("score").innerHTML.substring(8));
   let time = parseFloat(
-    document.getElementById("time").innerHTML.substring(8),
+    document.getElementById("time").innerHTML.substring(8)
   ).toFixed(2);
 
   window.location =
-    "save_score.php?userName=" + userName + "&score=" + score + "&time=" + time;
+    "../save_score.php?userName=" +
+    userName +
+    "&score=" +
+    score +
+    "&time=" +
+    time +
+    "&game=space_invaders";
 }
