@@ -12,12 +12,13 @@ class Score implements JsonSerializable {
         return (object) get_object_vars($this);
     }
 }
-
-$scores = json_decode(file_get_contents('scores.json'), true);
-
 $userName = $_GET['userName'];
 $score = $_GET['score'];
 $time = $_GET['time'];
+$game = $_GET['game'];
+$scores = json_decode(file_get_contents($game . '/scores.json'), true);
+
+
 $exists = false;
 foreach ($scores as $key => $user) {
     if ($user['userName'] == $userName) {
@@ -35,6 +36,6 @@ if (!$exists) {
 }
 
 $json = json_encode($scores);
-file_put_contents('scores.json', $json);
+file_put_contents($game . '/scores.json', $json);
 
-header('location:../score_history/');
+header('location:score_history/');

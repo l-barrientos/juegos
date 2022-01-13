@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,31 +11,97 @@
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th>Nombre de usuario</th>
-            <th>Puntuación</th>
-            <th>Tiempo</th>
-        </tr>
-        <?php
-        $scores = json_decode(file_get_contents('../space_invaders/scores.json'), true);
-        $users_db = json_decode(file_get_contents('../users.json'), true);
-        foreach ($scores as $user) {
-        ?>
-            <tr>
-                <td><?php foreach ($users_db as $row) {
-                        if ($row['userName'] == $user['userName']) {
-                            break;
+    <div style='margin-left:10%;margin-right:10%;'>
+        <h2>Space Invaders</h2>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre de usuario</th>
+                    <th>Puntuación</th>
+                    <th>Tiempo</th>
+                </tr>
+            </thead>
+            <?php
+
+            $scores = json_decode(file_get_contents('../space_invaders/scores.json'), true);
+            $users_db = json_decode(file_get_contents('../users.json'), true);
+
+            $only_scores = array();
+            foreach ($scores as $user) {
+                $only_scores[$user['userName']] = $user['score'];
+            }
+            arsort($only_scores, SORT_NUMERIC);
+            foreach ($only_scores as $userName => $score) {
+            ?>
+                <tr>
+                    <td style='width:10%;'>
+                        <?php foreach ($users_db as $row) {
+                            if ($userName == $row['userName']) {
+                                break;
+                            }
                         }
-                    }
-                    echo "<img style='width:10%; height:5%;' src='" . '../' . $row['profileImage'] . "' />";
-                    ?></td>
-                <td><?= $user['userName']; ?></td>
-                <td><?= $user['score']; ?></td>
-                <td><?= $user['time']; ?></td>
-            </tr>
-        <?php } ?>
-    </table>
+                        echo "<img style='width:100%;height:6%;border-radius:100%;' src='" . '../' . $row['profileImage'] . "' />";
+                        ?>
+                    </td>
+                    <td style='width:30%;'><?= $userName; ?></td>
+                    <td><?= $score; ?></td>
+                    <td><?php
+                        foreach ($scores as $user) {
+                            if ($userName == $user['userName']) {
+                                echo $user['time'];
+                            }
+                        }  ?></td>
+                </tr>
+            <?php } ?>
+        </table><br><br>
+
+        <h2>Ball Game</h2>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre de usuario</th>
+                    <th>Puntuación</th>
+                    <th>Tiempo</th>
+                </tr>
+            </thead>
+            <?php
+
+            $scores = json_decode(file_get_contents('../ball_game/scores.json'), true);
+            $users_db = json_decode(file_get_contents('../users.json'), true);
+
+            $only_scores = array();
+            foreach ($scores as $user) {
+                $only_scores[$user['userName']] = $user['score'];
+            }
+            arsort($only_scores, SORT_NUMERIC);
+            foreach ($only_scores as $userName => $score) {
+            ?>
+                <tr>
+                    <td style='width:10%;'>
+                        <?php foreach ($users_db as $row) {
+                            if ($userName == $row['userName']) {
+                                break;
+                            }
+                        }
+                        echo "<img style='width:100%;height:6%;border-radius:100%;' src='" . '../' . $row['profileImage'] . "' />";
+                        ?>
+                    </td>
+                    <td style='width:30%;'><?= $userName; ?></td>
+                    <td><?= $score; ?></td>
+                    <td><?php
+                        foreach ($scores as $user) {
+                            if ($userName == $user['userName']) {
+                                echo $user['time'];
+                            }
+                        }  ?></td>
+                </tr>
+            <?php } ?>
+        </table><br><br>
+        <a href="../space_invaders/"><button class="btn btn-success">Volver a jugar</button></a>
+        <a href="../menu/"><button class="btn btn-primary">Menú Principal</button></a>
+    </div>
 </body>
 
 </html>
