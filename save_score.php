@@ -3,10 +3,12 @@ class Score implements JsonSerializable {
     private $userName;
     private $score;
     private $time;
-    function __construct($userName, $score, $time) {
+    private $date;
+    function __construct($userName, $score, $time, $date) {
         $this->userName = $userName;
         $this->score = $score;
         $this->time = $time;
+        $this->date = $date;
     }
     public function jsonSerialize() {
         return (object) get_object_vars($this);
@@ -28,14 +30,15 @@ foreach ($scores as $key => $user) {
 }
 
 if (!$exists) {
-    $newScore = new Score($userName, $score, $time);
+    $newScore = new Score($userName, $score, $time, date('d/m/y -- H:i'));
     array_push($scores, $newScore);
 } else if ($scores[$key]['score'] < $score) {
     $scores[$key]['score'] = $score;
     $scores[$key]['time'] = $time;
+    $scores[$key]['date'] =  date('d/m/y -- H:i');
 }
 
 $json = json_encode($scores);
 file_put_contents($game . '/scores.json', $json);
 
-header('location:score_history/');
+header('location:score_history/?game=' . $game);

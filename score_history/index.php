@@ -1,3 +1,4 @@
+<?php require_once('../checkUserLogged.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +21,7 @@
                     <th>Nombre de usuario</th>
                     <th>Puntuación</th>
                     <th>Tiempo</th>
+                    <th>Fecha y Hora</th>
                 </tr>
             </thead>
             <?php
@@ -52,6 +54,15 @@
                                 echo $user['time'];
                             }
                         }  ?></td>
+                    <td>
+                        <?php
+                        foreach ($scores as $user) {
+                            if ($userName == $user['userName']) {
+                                echo $user['date'];
+                            }
+                        }  ?>
+                    </td>
+
                 </tr>
             <?php } ?>
         </table><br><br>
@@ -64,6 +75,7 @@
                     <th>Nombre de usuario</th>
                     <th>Puntuación</th>
                     <th>Tiempo</th>
+                    <th>Fecha y Hora</th>
                 </tr>
             </thead>
             <?php
@@ -90,16 +102,34 @@
                     </td>
                     <td style='width:30%;'><?= $userName; ?></td>
                     <td><?= $score; ?></td>
-                    <td><?php
+                    <td>
+                        <?php
                         foreach ($scores as $user) {
                             if ($userName == $user['userName']) {
                                 echo $user['time'];
                             }
-                        }  ?></td>
+                        }  ?>
+                    </td>
+                    <td>
+                        <?php
+                        foreach ($scores as $user) {
+                            if ($userName == $user['userName']) {
+                                echo $user['date'];
+                            }
+                        }  ?>
+                    </td>
+
                 </tr>
             <?php } ?>
         </table><br><br>
-        <a href="../space_invaders/"><button class="btn btn-success">Volver a jugar</button></a>
+        <a href="<?php
+                    if (isset($_GET["game"])) {
+                        echo "../" . $_GET["game"] . "/";
+                    } else {
+                        echo "../menu/";
+                    }
+
+                    ?>"><button class="btn btn-success">Volver a jugar</button></a>
         <a href="../menu/"><button class="btn btn-primary">Menú Principal</button></a>
     </div>
 </body>

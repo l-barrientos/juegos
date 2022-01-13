@@ -63,7 +63,12 @@ function updateTime() {
   timeDiv.innerHTML = "Tiempo: " + time.toFixed(2);
 }
 
-async function gameOver() {
+function gameOver() {
+  for (let i = 0; i < 9999; i++) {
+    clearInterval(i);
+  }
+  finished = true;
+
   let gameOverDiv = document.createElement("div");
   gameOverDiv.setAttribute("id", "gameOverDiv");
   gameOverDiv.setAttribute("class", "finish");
@@ -74,7 +79,7 @@ async function gameOver() {
   let time = document.getElementById("time").innerHTML.substring(8);
   let gameOverP2 = document.createElement("p");
   let gameOverNode2 = document.createTextNode(
-    "Has durado " + time + " segundos"
+    "Has durado " + time + " segundos",
   );
   gameOverP2.appendChild(gameOverNode2);
 
@@ -89,31 +94,20 @@ async function gameOver() {
   reloadButton.addEventListener("click", () => {
     location.reload();
   });
-  let gameOverP4 = document.createElement("p");
-  let gameOverNode4 = document.createTextNode("Datos guardados en 5...");
-  gameOverP4.appendChild(gameOverNode4);
+
+  let saveButton = document.createElement("button");
+  let saveButtonNode = document.createTextNode("GUARDAR PUNTUACIÓN");
+  saveButton.appendChild(saveButtonNode);
+  saveButton.addEventListener("click", () => {
+    saveScore();
+  });
 
   gameOverDiv.appendChild(gameOverP1);
   gameOverDiv.appendChild(gameOverP2);
   gameOverDiv.appendChild(gameOverP3);
-  gameOverDiv.appendChild(gameOverP4);
   gameOverDiv.appendChild(reloadButton);
+  gameOverDiv.appendChild(saveButton);
   document.body.appendChild(gameOverDiv);
-
-  for (let i = 0; i < 9999; i++) {
-    clearInterval(i);
-  }
-  finished = true;
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 4...";
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 3...";
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 2...";
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 1...";
-  await sleep(1000);
-  saveScore();
 }
 
 function getCookie(cName) {
@@ -130,7 +124,7 @@ function saveScore() {
   let userName = JSON.parse(getCookie("user")).userName;
   let score = parseInt(document.getElementById("score").innerHTML.substring(8));
   let time = parseFloat(
-    document.getElementById("time").innerHTML.substring(8)
+    document.getElementById("time").innerHTML.substring(8),
   ).toFixed(2);
 
   window.location =
