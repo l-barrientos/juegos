@@ -1,3 +1,7 @@
+<?php if (isset($_POST['logout'])) {
+  setcookie("user", "", time() - 3600);
+  unset($_COOKIE['user']);
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,6 +68,7 @@
   }
 
   ?>
+
 </body>
 
 </html>
