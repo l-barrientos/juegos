@@ -1,3 +1,4 @@
+<?php require_once('../checkUserLogged.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,13 +22,14 @@
   <a href="../score_history/"><button style="margin-left: 10%" class="btn btn-primary">
       VER PUNTUACIONES
     </button></a>
-  <form style='position:absolute;margin-left:73%;margin-top:-3%;' action="../" method='post'>
+  <form style='position:absolute;margin-left:73%;margin-top:-3%;' action="./" method='post'>
     <input class="btn btn-danger" type="submit" value="CERRAR SESIÓN" name="logout" />
   </form>
   <?php
   if (isset($_POST['logout'])) {
-    setcookie("user");
-    header('location:./');
+    setcookie("user", "", time() - 3600);
+    unset($_COOKIE['user']);
+    header('location:../');
   }
   ?>
 </body>

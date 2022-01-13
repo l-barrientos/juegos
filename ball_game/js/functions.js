@@ -56,7 +56,7 @@ function youWin() {
   let time = document.getElementById("time").innerHTML.substr(8);
   let youWinP2 = document.createElement("p");
   let youWinNode2 = document.createTextNode(
-    "Has ganado en " + time + " segundos"
+    "Has ganado en " + time + " segundos",
   );
   youWinP2.appendChild(youWinNode2);
 
@@ -72,10 +72,17 @@ function youWin() {
     location.reload();
   });
 
+  let saveButton = document.createElement("button");
+  let saveButtonNode = document.createTextNode("GUARDAR PUNTUACIÓN");
+  saveButton.appendChild(saveButtonNode);
+  saveButton.addEventListener("click", () => {
+    saveScore();
+  });
   youWinDiv.appendChild(youWinP1);
   youWinDiv.appendChild(youWinP2);
   youWinDiv.appendChild(youWinP3);
   youWinDiv.appendChild(reloadButton);
+  youWinDiv.appendChild(saveButton);
   document.body.appendChild(youWinDiv);
 }
 
@@ -95,7 +102,7 @@ async function gameOver() {
   let time = document.getElementById("time").innerHTML.substring(8);
   let gameOverP2 = document.createElement("p");
   let gameOverNode2 = document.createTextNode(
-    "Has durado " + time + " segundos"
+    "Has durado " + time + " segundos",
   );
   gameOverP2.appendChild(gameOverNode2);
 
@@ -110,27 +117,19 @@ async function gameOver() {
   reloadButton.addEventListener("click", () => {
     location.reload();
   });
-  let gameOverP4 = document.createElement("p");
-  let gameOverNode4 = document.createTextNode("Datos guardados en 5...");
-  gameOverP4.appendChild(gameOverNode4);
+  let saveButton = document.createElement("button");
+  let saveButtonNode = document.createTextNode("GUARDAR PUNTUACIÓN");
+  saveButton.appendChild(saveButtonNode);
+  saveButton.addEventListener("click", () => {
+    saveScore();
+  });
 
   gameOverDiv.appendChild(gameOverP1);
   gameOverDiv.appendChild(gameOverP2);
   gameOverDiv.appendChild(gameOverP3);
-  gameOverDiv.appendChild(gameOverP4);
   gameOverDiv.appendChild(reloadButton);
+  gameOverDiv.appendChild(saveButton);
   document.body.appendChild(gameOverDiv);
-
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 4...";
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 3...";
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 2...";
-  await sleep(1000);
-  gameOverP4.innerHTML = "Datos guardados en 1...";
-  await sleep(1000);
-  saveScore();
 }
 
 // Function to check the level chosen by the user
@@ -168,10 +167,10 @@ function getCookie(cName) {
 function saveScore() {
   let userName = JSON.parse(getCookie("user")).userName;
   let score = parseInt(
-    document.getElementById("points").innerHTML.substring(8)
+    document.getElementById("points").innerHTML.substring(8),
   );
   let time = parseFloat(
-    document.getElementById("time").innerHTML.substring(8)
+    document.getElementById("time").innerHTML.substring(8),
   ).toFixed(2);
 
   window.location =
