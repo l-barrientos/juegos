@@ -4,11 +4,11 @@ class Score implements JsonSerializable {
     private $score;
     private $time;
     private $date;
-    function __construct($userName, $score, $time, $date) {
+    function __construct($userName, $score, $time) {
         $this->userName = $userName;
         $this->score = $score;
         $this->time = $time;
-        $this->date = $date;
+        $this->date = date('d/m/y H:i');
     }
     public function jsonSerialize() {
         return (object) get_object_vars($this);
@@ -30,7 +30,7 @@ foreach ($scores as $key => $user) {
 }
 
 if (!$exists) {
-    $newScore = new Score($userName, $score, $time, date('d/m/y -- H:i'));
+    $newScore = new Score($userName, $score, $time);
     array_push($scores, $newScore);
 } else if ($scores[$key]['score'] < $score) {
     $scores[$key]['score'] = $score;
