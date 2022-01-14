@@ -15,9 +15,14 @@ if (isset($_POST['signInSubmit'])) {
         }
     }
 
-    setcookie("user", json_encode($user), time() + 60 * 60 * 24);
+
     // Redirect to the site depending on whether there is an error or not
-    $validUser ?  header('Location:menu/') : header('Location:index.php?error=authentication');
+    if ($validUser) {
+        setcookie("user", json_encode($user), time() + 60 * 60 * 24);
+        header('Location:menu/');
+    } else {
+        header('Location:index.php?error=authentication');
+    }
 
     // Check whether sign up prcoess is done
 } else if (isset($_POST['signUpSubmit'])) {

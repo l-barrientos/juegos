@@ -18,6 +18,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
+                    <th></th>
                     <th>Nombre de usuario</th>
                     <th>Puntuación</th>
                     <th>Tiempo</th>
@@ -34,9 +35,21 @@
                 $only_scores[$user['userName']] = $user['score'];
             }
             arsort($only_scores, SORT_NUMERIC);
+            $i = 0;
             foreach ($only_scores as $userName => $score) {
+                $i++;
             ?>
                 <tr>
+                    <td><?php if ($i == 1) {
+                            echo  $i . ' 👑';
+                        } else if ($i == 2) {
+                            echo $i . ' 🥈';
+                        } else if ($i == 3) {
+                            echo  $i . ' 🥉';
+                        } else {
+                            echo $i;
+                        }
+                        ?></td>
                     <td style='width:10%;'>
                         <?php foreach ($users_db as $row) {
                             if ($userName == $row['userName']) {
@@ -72,6 +85,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
+                    <th></th>
                     <th>Nombre de usuario</th>
                     <th>Puntuación</th>
                     <th>Tiempo</th>
@@ -88,9 +102,21 @@
                 $only_scores[$user['userName']] = $user['score'];
             }
             arsort($only_scores, SORT_NUMERIC);
+            $j = 0;
             foreach ($only_scores as $userName => $score) {
+                $j++;
             ?>
                 <tr>
+                    <td><?php if ($j == 1) {
+                            echo  $j . ' 👑';
+                        } else if ($j == 2) {
+                            echo $j . ' 🥈';
+                        } else if ($j == 3) {
+                            echo  $j . ' 🥉';
+                        } else {
+                            echo $j;
+                        }
+                        ?></td>
                     <td style='width:10%;'>
                         <?php foreach ($users_db as $row) {
                             if ($userName == $row['userName']) {
