@@ -8,7 +8,7 @@ class Score implements JsonSerializable {
         $this->userName = $userName;
         $this->score = $score;
         $this->time = $time;
-        $this->date = date('d/m/y H:i');
+        $this->date = date('d/m/y -- H:i');
     }
     public function jsonSerialize() {
         return (object) get_object_vars($this);
