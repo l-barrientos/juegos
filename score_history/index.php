@@ -18,6 +18,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
+                    <th></th>
                     <th>Nombre de usuario</th>
                     <th>Puntuación</th>
                     <th>Tiempo</th>
@@ -34,9 +35,12 @@
                 $only_scores[$user['userName']] = $user['score'];
             }
             arsort($only_scores, SORT_NUMERIC);
+            $i = 0;
             foreach ($only_scores as $userName => $score) {
+                $i++;
             ?>
                 <tr>
+                    <td><?= $i ?></td>
                     <td style='width:10%;'>
                         <?php foreach ($users_db as $row) {
                             if ($userName == $row['userName']) {
@@ -72,6 +76,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
+                    <th></th>
                     <th>Nombre de usuario</th>
                     <th>Puntuación</th>
                     <th>Tiempo</th>
@@ -88,9 +93,12 @@
                 $only_scores[$user['userName']] = $user['score'];
             }
             arsort($only_scores, SORT_NUMERIC);
+            $j = 0;
             foreach ($only_scores as $userName => $score) {
+                $j++;
             ?>
                 <tr>
+                    <td><?= $j ?></td>
                     <td style='width:10%;'>
                         <?php foreach ($users_db as $row) {
                             if ($userName == $row['userName']) {
