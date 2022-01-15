@@ -173,7 +173,7 @@ function saveScore() {
   ).toFixed(2);
 
   window.location =
-    "../controllers/save_score_controller.php?score=" +
+    "../../controllers/save_score_controller.php?score=" +
     score +
     "&time=" +
     time +

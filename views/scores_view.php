@@ -1,4 +1,3 @@
-<?php require_once('../checkUserLogged.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +29,7 @@
             foreach ($space_invaders_scores as $row) {
                 $i++;
             ?>
-                <tr>
+                <tr <?= checkCurrentUser($row) ?>>
                     <td><?php if ($i == 1) {
                             echo  $i . ' 👑';
                         } else if ($i == 2) {
@@ -79,7 +78,7 @@
             foreach ($ball_game_scores as $row) {
                 $i++;
             ?>
-                <tr>
+                <tr <?= checkCurrentUser($row) ?>>
                     <td><?php if ($i == 1) {
                             echo  $i . ' 👑';
                         } else if ($i == 2) {

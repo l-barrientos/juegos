@@ -11,7 +11,7 @@
 
 <body>
     <!-- Form to sign in with credentials -->
-    <form action="http://localhost/juegos/controllers/login_controller.php" method="post" id='signInForm'>
+    <form action="./" method="post" id='signInForm'>
         <h2 style='text-align:center;margin-top:2%;'>Iniciar Sesión</h2>
         <div style='margin-left:45%;margin-top:2%;'>
             <div class="form-group">
@@ -27,19 +27,19 @@
     </form>
 
     <!-- Form to sign up -->
-    <form action="http://localhost/juegos/controllers/login_controller.php" method="post" enctype="multipart/form-data" id="signUpForm" class="signForms">
+    <form action="./" method="post" enctype="multipart/form-data" id="signUpForm" class="signForms">
         <h2 style='text-align:center;margin-top:4%;'>Registrarse</h2>
         <div style='margin-left:45%;margin-top:2%;'>
             <div class="form-group">
-                <label for="newUserName">Usuario:</label>
+                <label for="newUserName">Usuario: *</label>
                 <input type="text" name="newUserName" id="newUserName" />
             </div>
             <div class="form-group">
-                <label for="newPassword">Contraseña: </label>
+                <label for="newPassword">Contraseña: *</label>
                 <input type="password" name="newPassword" id="newPassword" />
             </div>
             <div class="form-group">
-                <label for="newPasswordRepeated">Repite la contraseña: </label>
+                <label for="newPasswordRepeated">Repite la contraseña: *</label>
                 <input type="password" name="newPasswordRepeated" id="newPasswordRepeated" />
             </div>
             <div class="form-group">

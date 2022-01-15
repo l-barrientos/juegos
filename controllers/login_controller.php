@@ -1,10 +1,10 @@
 <?php
-
+require_once(dirname(__DIR__) . '/helpers/dataInputFunctions.php');
 // Import data from database.php
 require_once(dirname(__DIR__) . '/db/db.php');
 require_once(dirname(__DIR__) . '/models/user_model.php');
 if (isset($_POST['logout'])) {
-    setcookie("user", "", time() - 3600);
+    setcookie("user", "", time() - 3600, '/');
     unset($_COOKIE['user']);
 }
 
@@ -30,7 +30,7 @@ if (isset($_POST['signInSubmit'])) {
     // Redirect to the site depending on whether there is an error or not
     if ($validUser) {
         setcookie("user", $user->getUser_name(), time() + 60 * 60 * 24, '/');
-        header('Location:http://localhost/juegos/views/menu_view.php');
+        header('Location:views/menu_view.php');
     } else {
         echo "<p>Error de autenticación: contraseña o nombre de usuario erróneos</p>";
     }
@@ -66,28 +66,6 @@ if (isset($_POST['signInSubmit'])) {
         $newUser = new User($_POST['newUserName'], $_POST['newPassword'], $profileImageSrc);
         $conn->insertUser($newUser);
         setcookie("user", $newUser->getUser_name(), time() + 60 * 60 * 24, '/');
-        header('Location:http://localhost/juegos/views/menu_view.php');
+        header('Location:views/menu_view.php');
     }
-}
-
-// Function to check whether an userName is already used
-function checkUserNameUsed($newUserName, $users_array) {
-    foreach ($users_array as $user) {
-        if ($newUserName == $user['user_name']) {
-            return true;
-        }
-    }
-    return false;
-}
-
-// Function to check whether there is an empty field
-function checkEmptyFields($method) {
-    foreach ($method as $name => $field) {
-        if ($name != 'profileImage') {
-            if (empty($field)) {
-                return true;
-            }
-        }
-    }
-    return false;
 }

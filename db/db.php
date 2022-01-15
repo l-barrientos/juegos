@@ -75,10 +75,19 @@ class Connection {
         }
     }
 
-    public function updateUser($user, $user_name, $passwd, $profile_image) {
+    public function updateUserInfo($user, $new_user_name, $new_profile_image) {
         $sql = "UPDATE users 
-        SET user_name='$user_name', passwd='$passwd', profile_image='$profile_image'
+        SET user_name='$new_user_name', profile_image='$new_profile_image'
         WHERE id=" . $user->getId() . "; ";
+        try {
+            $this->cn->exec($sql);
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
+
+    public function updateUserPasswd($user, $new_passwd) {
+        $sql = "UPDATE users SET passwd = '$new_passwd' WHERE id =" . $user->getId() . ";";
         try {
             $this->cn->exec($sql);
         } catch (PDOException $err) {
@@ -104,7 +113,7 @@ class Connection {
         try {
             $prep = $this->cn->prepare($sql);
             $prep->execute();
-            return $prep->fetchAll(\PDO::FETCH_ASSOC);
+            return $prep->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $err) {
             echo $err->getMessage();
         }

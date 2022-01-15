@@ -1,4 +1,5 @@
 <?php
+require_once('../helpers/checkUserLogged.php');
 require_once('../db/db.php');
 require_once('../models/score_model.php');
 require_once('../models/user_model.php');
@@ -11,8 +12,6 @@ $user = new User($user_data['user_name'], $user_data['passwd'], $user_data['prof
 $newScore = new Score($user, $_GET['game'], $_GET['score'], $_GET['time']);
 
 $score_data = $conn->getScoreByUser($newScore->getGame(), $user);
-print("<pre>" . print_r($user_data, true) . "</pre>");
-
 
 if ($score_data == null) {
     $conn->insertScore($newScore, $user);
@@ -22,4 +21,4 @@ if ($score_data == null) {
 }
 
 
-//header('location:scores_controller.php?game=' . $_GET['game']);
+header('location:scores_controller.php?game=' . $_GET['game']);
