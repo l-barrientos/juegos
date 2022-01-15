@@ -1,4 +1,3 @@
-<?php require_once('../checkUserLogged.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +18,7 @@
   <a href="../ball_game/"><button style="margin-left: 10%" class="btn btn-success">
       BALL GAME
     </button></a>
-  <a href="../score_history/"><button style="margin-left: 10%" class="btn btn-primary">
+  <a href="../controllers/scores_controller.php"><button style="margin-left: 10%" class="btn btn-primary">
       VER PUNTUACIONES
     </button></a>
   <form style='position:absolute;margin-left:73%;margin-top:-3%;' action="../" method='post'>

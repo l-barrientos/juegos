@@ -2,35 +2,47 @@
 <?php
 require_once(dirname(__DIR__) . '/db/db.php');
 class Score {
-    private $db;
-    private $user_name;
+    private $id;
+    private $id_user;
+    private $game;
     private $score;
     private $time;
     private $date;
-    function __construct($user_name, $score, $time, $date) {
-        $this->user_name = $user_name;
+    function __construct($user, $game,  $score, $time, $id = '') {
+        $this->id_user = $user->getId();
+        $this->game = $game;
         $this->score = $score;
         $this->time = $time;
         $this->date = date('d/m/y -- H:i');
+        $this->id = $id;
     }
 
     //GETTERS ANDS SETTERS
-    /* Getter and Setter Db */
-    public function getDb() {
-        return $this->db;
+    /* Getter and Setter Id */
+    public function getId() {
+        return $this->id;
     }
 
-    public function setDb($db) {
-        $this->db = $db;
+    public function setId($id) {
+        $this->id = $id;
     }
 
-    /* Getter and Setter User_name */
-    public function getUser_name() {
-        return $this->user_name;
+    /* Getter and Setter Id_user */
+    public function getId_user() {
+        return $this->id_user;
     }
 
-    public function setUser_name($user_name) {
-        $this->user_name = $user_name;
+    public function setId_user($id_user) {
+        $this->id_user = $id_user;
+    }
+
+    /* Getter and Setter Game */
+    public function getGame() {
+        return $this->game;
+    }
+
+    public function setGame($game) {
+        $this->game = $game;
     }
 
     /* Getter and Setter Score */
@@ -62,22 +74,9 @@ class Score {
 
     //METHODS
 
-    public function getAllOrdered($table) {
-        $sql = "SELECT * FROM $table ORDER BY score DESC, time ASC ;";
-        try {
-            return $this->db->query($sql);
-        } catch (PDOException $err) {
-            echo $err->getMessage();
-        }
-    }
 
-    public function insertScore($table, $id_user, $score, $profile_image) {
-        $sql = "INSERT INTO $table (user_name, passwd, profile_image)
-        VALUES('$user_name', '$passwd', '$profile_image');";
-        try {
-            $this->db->exec($sql);
-        } catch (PDOException $err) {
-            echo $err->getMessage();
-        }
-    }
+
+
+
+
 }

@@ -165,7 +165,6 @@ function getCookie(cName) {
   return res;
 }
 function saveScore() {
-  let userName = JSON.parse(getCookie("user")).userName;
   let score = parseInt(
     document.getElementById("points").innerHTML.substring(8),
   );
@@ -174,9 +173,7 @@ function saveScore() {
   ).toFixed(2);
 
   window.location =
-    "../save_score.php?userName=" +
-    userName +
-    "&score=" +
+    "../controllers/save_score_controller.php?score=" +
     score +
     "&time=" +
     time +

@@ -1,16 +1,27 @@
 <?php
-// Import data from database.php
-include('database.php');
-include('user.php');
 
+// Import data from database.php
+require_once(dirname(__DIR__) . '/db/db.php');
+require_once(dirname(__DIR__) . '/models/user_model.php');
+if (isset($_POST['logout'])) {
+    setcookie("user", "", time() - 3600);
+    unset($_COOKIE['user']);
+}
+
+if (isset($_COOKIE['user'])) {
+    header('location:http://localhost/juegos/views/menu_view.php');
+}
+$conn = new Connection();
+$users_array = $conn->getAllUsers();
+require_once(dirname(__DIR__) . '/views/login_view.php');
 // Check whether sign in prcoess is done
 if (isset($_POST['signInSubmit'])) {
     $validUser = false;
-
     // Check whether credentials are right
     foreach ($users_array as $user) {
-        if ($_POST['userName'] == $user['userName'] && password_verify($_POST['password'], $user['password'])) {
+        if ($_POST['userName'] == $user['user_name'] && password_verify($_POST['password'], $user['passwd'])) {
             $validUser = true;
+            $user = new User($user['user_name'], $user['passwd'], $user['profile_image'], $user['id']);
             break;
         }
     }
@@ -18,10 +29,10 @@ if (isset($_POST['signInSubmit'])) {
 
     // Redirect to the site depending on whether there is an error or not
     if ($validUser) {
-        setcookie("user", json_encode($user), time() + 60 * 60 * 24);
-        header('Location:menu/');
+        setcookie("user", $user->getUser_name(), time() + 60 * 60 * 24, '/');
+        header('Location:http://localhost/juegos/views/menu_view.php');
     } else {
-        header('Location:index.php?error=authentication');
+        echo "<p>Error de autenticación: contraseña o nombre de usuario erróneos</p>";
     }
 
     // Check whether sign up prcoess is done
@@ -29,42 +40,40 @@ if (isset($_POST['signInSubmit'])) {
 
     // Check whether there is an empty field
     if (checkEmptyFields($_POST)) {
-        header('Location:./?error=emptyField');
+        echo "<p>Todos los campos deben estar cumplimentados</p>";
 
         // Check whether password entries match
     } else if ($_POST['newPassword'] != $_POST['newPasswordRepeated']) {
-        header('Location: ./?error=passNotMatch');
+        echo "<p>Las contraseñas no coinciden</p>";
 
         // Check whether userName is already used 
     } else if (checkuserNameUsed($_POST['newUserName'], $users_array)) {
-        header('Location: ./?error=userNameUsed');
+        echo "<p>Este nombre de usuario ya está registrado</p>";
 
         // If there is no error create new user and push it to data file
     } else {
         if ($_FILES['profileImage']['size'] != 0) {
             $folder = 'profile_images/' . $_POST['newUserName'];
-            mkdir($folder);
+            mkdir(dirname(__DIR__) . '/' . $folder);
             $profileImageSrc = $folder . '/' . $_FILES["profileImage"]["name"];
-            $res = move_uploaded_file($_FILES['profileImage']['tmp_name'], $profileImageSrc);
+            $res = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../' . $profileImageSrc);
             if (!$res) {
-                header('Location: ./?error=imgError');
+                echo "<p>Error al subir imagen de perfil</p>";
             }
         } else {
             $profileImageSrc = 'profile_images/default.png';
         }
-        $newUser = new User($_POST['newUserName'], password_hash($_POST['newPassword'], PASSWORD_DEFAULT), $profileImageSrc);
-        setcookie("user", json_encode($newUser), time() + 60 * 60 * 24);
-        header('Location:menu/');
-        array_push($users_array, $newUser);
-        $json = json_encode($users_array);
-        file_put_contents('users.json', $json);
+        $newUser = new User($_POST['newUserName'], $_POST['newPassword'], $profileImageSrc);
+        $conn->insertUser($newUser);
+        setcookie("user", $newUser->getUser_name(), time() + 60 * 60 * 24, '/');
+        header('Location:http://localhost/juegos/views/menu_view.php');
     }
 }
 
 // Function to check whether an userName is already used
 function checkUserNameUsed($newUserName, $users_array) {
     foreach ($users_array as $user) {
-        if ($newUserName == $user['userName']) {
+        if ($newUserName == $user['user_name']) {
             return true;
         }
     }

@@ -121,16 +121,13 @@ function getCookie(cName) {
   return res;
 }
 function saveScore() {
-  let userName = JSON.parse(getCookie("user")).userName;
   let score = parseInt(document.getElementById("score").innerHTML.substring(8));
   let time = parseFloat(
     document.getElementById("time").innerHTML.substring(8),
   ).toFixed(2);
 
   window.location =
-    "../save_score.php?userName=" +
-    userName +
-    "&score=" +
+    "../controllers/save_score_controller.php?score=" +
     score +
     "&time=" +
     time +

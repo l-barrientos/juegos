@@ -1,4 +1,4 @@
 <?php
 if (!isset($_COOKIE['user'])) {
-    header('location:../');
+    header('location:http://localhost/juegos/');
 }
