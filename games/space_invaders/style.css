@@ -1,0 +1,61 @@
+body {
+  background-image: url("img/bg.jpg");
+}
+p {
+  color: white;
+}
+
+#playButton {
+  margin-top: 15%;
+  margin-left: 38%;
+  position: absolute;
+  font-size: 50pt;
+  font-family: "Calibri";
+  background-color: rgb(15, 240, 15);
+  border-radius: 10px;
+  width: 20%;
+}
+#playButton:hover {
+  background-color: rgb(67, 158, 67);
+  cursor: pointer;
+}
+.finish {
+  z-index: 2;
+  position: absolute;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin-left: 20%;
+  margin-top: 5%;
+  width: 60%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.finish p:first-of-type {
+  font-size: 70pt;
+  color: white;
+  font-family: "Franklin Gothic Medium";
+  margin-bottom: 2%;
+}
+.finish p {
+  font-size: 25pt;
+  color: black;
+  font-family: "Calibri";
+}
+
+.finish button {
+  font-family: "Calibri";
+  font-size: 28pt;
+  margin-top: 1%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1%;
+  margin-right: 3%;
+}
+.finish button:hover {
+  background-color: rgb(187, 184, 184);
+  cursor: pointer;
+}
+#gameOverDiv {
+  background-color: red;
+}

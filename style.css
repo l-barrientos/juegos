@@ -1,0 +1,53 @@
+.signForms {
+  position: absolute;
+  margin-left: 35%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2%;
+}
+h2 {
+  margin-top: -7%;
+}
+#signInForm {
+  margin-top: 10%;
+}
+
+#signUpForm {
+  margin-top: 25%;
+}
+.error {
+  position: absolute;
+  margin-left: 35%;
+  color: red;
+  font-size: 16pt;
+  font-family: "Consolas";
+}
+
+#errorIn {
+  margin-top: 22%;
+}
+
+#errorUp {
+  margin-top: 52%;
+}
+
+#errorGif {
+  position: absolute;
+  margin-top: 20%;
+  margin-left: 2%;
+  width: 30%;
+  height: 30%;
+}
+
+#welcomeGif {
+  position: absolute;
+  margin-left: 10%;
+  margin-top: 10%;
+  width: 30%;
+  height: 30%;
+}
+
+#profileImg {
+  width: 10%;
+  height: 10%;
+}
