@@ -32,7 +32,7 @@ if (isset($_POST['updateInfo'])) {
         if (!$res) {
             echo "<p>Error al subir imagen de perfil</p>";
         } else {
-            unlink('../' . $user->getProfile_image());
+            $user->getProfile_image() != 'profile_image/default.png' ? unlink('../' . $user->getProfile_image()) : '';
             $user->setProfile_image($profileImageSrc);
         }
     }

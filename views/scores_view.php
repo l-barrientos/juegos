@@ -12,7 +12,7 @@
 
 <body>
     <div style='margin-left:10%;margin-right:10%;'>
-        <br><br><a href="../views/menu_view.php"><button class="btn btn-primary">Menú Principal</button></a><br><br>
+        <br><br><a href="../controllers/menu_controller.php"><button class="btn btn-primary">Menú Principal</button></a><br><br>
         <h2>Space Invaders</h2>
         <table class="table">
             <thead class="thead-light">
@@ -121,7 +121,7 @@
             </table>
         </div><br><br>
 
-        <a href="../views/menu_view.php"><button class="btn btn-primary">Menú Principal</button></a><br>
+        <a href="../controllers/menu_controller.php"><button class="btn btn-primary">Menú Principal</button></a><br>
 
     </div>
 </body>
