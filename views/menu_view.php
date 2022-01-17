@@ -26,7 +26,7 @@
   <a href="../controllers/edit_profile_controller.php"><button style="margin-left: 10%" class="btn btn-primary">
       EDITAR PERFIL
     </button></a>
-  <form style='position:absolute;margin-left:73%;margin-top:-3%;' action="../" method='post'>
+  <form style='margin-left:10%;margin-top:5%;' action="../" method='post'>
     <input class="btn btn-danger" type="submit" value="CERRAR SESIÓN" name="logout" />
   </form>
 
