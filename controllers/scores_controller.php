@@ -13,7 +13,7 @@ if (isset($_GET["game"])) {
 }
 
 function checkCurrentUser($score_row, $current_user) {
-    if ($score_row['user_name'] == $current_user['id']) {
+    if ($score_row['user_name'] == $current_user['user_name']) {
         return "style='background-color:#ADD8E6'";
     }
 }
