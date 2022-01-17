@@ -10,7 +10,7 @@ if (isset($_POST['logout'])) {
 
 if (isset($_COOKIE['user'])) {
 
-    header('location:views/menu_view.php');
+    header('location:controllers/menu_controller.php');
 }
 $conn = new Connection();
 $users_array = $conn->getAllUsers();
@@ -31,7 +31,7 @@ if (isset($_POST['signInSubmit'])) {
     // Redirect to the site depending on whether there is an error or not
     if ($validUser) {
         setcookie("user", $user->getId(), time() + 60 * 60 * 24, '/');
-        header('Location:views/menu_view.php');
+        header('Location:controllers/menu_controller.php');
     } else {
         echo "<p>Error de autenticación: contraseña o nombre de usuario erróneos</p>";
     }

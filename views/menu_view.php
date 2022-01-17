@@ -13,27 +13,33 @@
 </head>
 
 <body>
+  <img style="margin-left:2%;margin-top:2%;width:13%;height:13%;border-radius:100%;" src="../<?= $user->getProfile_image(); ?>">
+  <h1 style="position: absolute; margin-left: 20%; margin-top:-8%;">Bienvenido <?= $user->getUser_name() ?></h1>
+
   <br /><br />
-  <a href="../games/space_invaders/"><button style="margin-left: 10%" class="btn btn-success">
-      SPACE INVADERS
-    </button></a>
-  <a href="../games/ball_game/"><button style="margin-left: 10%" class="btn btn-success">
-      BALL GAME
-    </button></a>
-  <a href="../controllers/scores_controller.php"><button style="margin-left: 10%" class="btn btn-primary">
+
+
+  <a href="../controllers/scores_controller.php"><button style='margin-left:25%;' class="btn btn-primary">
       VER PUNTUACIONES
     </button></a>
   <a href="../controllers/edit_profile_controller.php"><button style="margin-left: 10%" class="btn btn-primary">
       EDITAR PERFIL
     </button></a>
-<<<<<<< HEAD:views/menu_view.php
-  <form style='position:absolute;margin-left:73%;margin-top:-3%;' action="../" method='post'>
-=======
-  <form style='margin-left:10%;margin-top:5%;' action="../" method='post'>
->>>>>>> 390d87a702b5d25de3314574e15c58dbfd6d91f6:menu/index.php
-    <input class="btn btn-danger" type="submit" value="CERRAR SESIÓN" name="logout" />
-  </form>
+  <form style=' margin-left:65%;margin-bottom:3%;margin-top:-3%;' action="../" method='post'>
 
+    <input style='margin-left:10%;' class="btn btn-danger" type="submit" value="CERRAR SESIÓN" name="logout" />
+  </form>
+  <div>
+    <a href="../games/space_invaders/"><img style="margin-left:7%;width:15%;height:15%;border-radius:30px;" src="../views/img/space_invaders.jpg"></a>
+    <img style="margin-left:15%;width:40%;height:40%;border-radius:10px;" src="../views/img/space_invaders.gif">
+  </div>
+  <div style="margin-top:5%;">
+    <a href=" ../games/ball_game/"><img style="margin-left:7%;width:15%;height:15%;border-radius:30px;" src="../views/img/ball_game.png"></a>
+    <img style="margin-left:15%;width:40%;height:40%;border-radius:10px;border:1px solid black;" src="../views/img/ball_game.gif">
+  </div>
+  <footer style='margin-top:5%;background-color:black; padding:3%;'>
+    <p style='text-align:center;color:white'>Desarrollado por Kolaryx&Co</p>
+  </footer>
 </body>
 
 </html>
