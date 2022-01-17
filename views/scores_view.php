@@ -29,7 +29,7 @@
             foreach ($space_invaders_scores as $row) {
                 $i++;
             ?>
-                <tr <?= checkCurrentUser($row) ?>>
+                <tr <?= checkCurrentUser($row, $current_user) ?>>
                     <td><?php if ($i == 1) {
                             echo  $i . ' 👑';
                         } else if ($i == 2) {
@@ -42,7 +42,7 @@
                         ?></td>
                     <td style='width:6%;'>
                         <?php
-                        echo "<img style='width:100%;height:6%;border-radius:100%;' src='" . '../' . substr($row['profile_image'], 1) . "' />";
+                        echo "<img style='width:100%;height:6%;border-radius:100%;' src='" . '../' . $row['profile_image'] . "' />";
                         ?>
                     </td>
                     <td style='width:30%;'><?= $row['user_name']; ?></td>
@@ -78,7 +78,7 @@
             foreach ($ball_game_scores as $row) {
                 $i++;
             ?>
-                <tr <?= checkCurrentUser($row) ?>>
+                <tr <?= checkCurrentUser($row, $current_user) ?>>
                     <td><?php if ($i == 1) {
                             echo  $i . ' 👑';
                         } else if ($i == 2) {
@@ -91,7 +91,7 @@
                         ?></td>
                     <td style='width:6%;'>
                         <?php
-                        echo "<img style='width:100%;height:6%;border-radius:100%;' src='" . '../' . substr($row['profile_image'], 1) . "' />";
+                        echo "<img style='width:100%;height:6%;border-radius:100%;' src='" . '../' . $row['profile_image'] . "' />";
                         ?>
                     </td>
                     <td style='width:30%;'><?= $row['user_name']; ?></td>

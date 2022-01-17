@@ -10,9 +10,9 @@ class Connection {
 
         //WEB HOST CONFIG 
         /*$this->host = 'localhost';
-        $this->user = 'root';
+        $this->user = 'id17980902_root';
         $this->pass = 'SuperRoot00#';
-        $this->name = 'games'; */
+        $this->name = 'id17980902_games'; */
 
         //LOCAL HOST CONFIG
         $this->host = 'localhost';
@@ -54,8 +54,8 @@ class Connection {
         }
     }
 
-    public function getUserByUserName($user_name) {
-        $sql = "SELECT * FROM users WHERE user_name = '$user_name';";
+    public function getUserById($user_id) {
+        $sql = "SELECT * FROM users WHERE id = '$user_id';";
         try {
             $prep = $this->cn->prepare($sql);
             $prep->execute();
@@ -67,9 +67,17 @@ class Connection {
 
     public function insertUser($user) {
         $sql = "INSERT INTO users (user_name, passwd, profile_image)
-        VALUES('" . $user->getUser_name() . "', '" . $user->getPasswd() . "', '." . $user->getProfile_image() . "');";
+        VALUES('" . $user->getUser_name() . "', '" . $user->getPasswd() . "', '" . $user->getProfile_image() . "');";
         try {
             $this->cn->exec($sql);
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+        try {
+            $query = $this->cn->prepare("SELECT id FROM users WHERE user_name ='" . $user->getUser_name() . "';");
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            return $result['id'];
         } catch (PDOException $err) {
             echo $err->getMessage();
         }

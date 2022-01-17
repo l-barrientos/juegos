@@ -11,24 +11,56 @@
 </head>
 
 <body>
+    <a href="../views/menu_view.php"><button style='position:absolute;margin-left: 3%;margin-top:2%;' class="btn btn-danger">Volver al menú</button></a>
+    <h2 style='text-align:center;margin-top:1%;'>Editar perfil</h2>
+    <form style='margin-top:1%;margin-left:37%;margin-right:40%;' enctype="multipart/form-data" onreset="resetImage()" action="../controllers/edit_profile_controller.php" method="post">
 
-    <form action="../controllers/edit_profile_controller.php" method="post">
-        <div class="form-group">
-
-            <label for="userName">Nombre de usuario</label>
-            <p>Hola Mundo</p>
-            <input type="text" class="form-control" id="userName" value="<?= $user->getUser_name() ?>">
+        <label for="newUserName">Nombre de usuario</label>
+        <input type="text" name="newUserName" class="form-control" id="newUserName" value="<?= $user->getUser_name() ?>"><br>
 
         </div>
         <div class="form-group">
-            <label for="profile_image">Foto de perfil</label>
-            <input type="file" class="form-control-file" id="profile_image">
+            <label for="profileImage">Foto de perfil</label>
+            <input type="file" name="profileImage" class="form-control-file" id="profileImage" onchange="displayImage(this);">
         </div>
         <?php
-        echo "<img style='width:100%;height:6%;border-radius:100%;' src='" . '../' . substr($user->getProfile_image(), 1) . "' />";
-        ?>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        echo "<img id='prof' style='width:30%;height:6%;border-radius:100%;' src='" . '../' . $user->getProfile_image() . "' />";
+        ?><br><br>
+        <input type="submit" name='updateInfo' class="btn btn-primary" value="Guardar">
+        <input type="reset" class="btn btn-danger" value="Cancelar">
+
     </form>
+
+    <h2 style='text-align:center;margin-top:2%;'>Cambiar contraseña</h2>
+    <form style='margin-top:1%;margin-left:37%;margin-right:40%;' action="../controllers/edit_profile_controller.php" method="post">
+
+        <label for="currentPasswd">Contraseña actual</label>
+        <input type="password" name="currentPasswd" class="form-control" id="currentPasswd"><br>
+        <label for="newPasswd">Nueva contraseña</label>
+        <input type="password" name="newPasswd" class="form-control" id="newPasswd"><br>
+        <label for="repeatedNewPasswd">Repetir nueva contraseña</label>
+        <input type="password" name="repeatedNewPasswd" class="form-control" id="repeatedNewPasswd"><br>
+
+
+        <input type="submit" name='updatePasswd' class="btn btn-primary" value="Guardar">
+        <input type="reset" class="btn btn-danger" value="Cancelar">
+    </form>
+
+    <script>
+        function displayImage(e) {
+            if (e.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('#prof').setAttribute('src', e.target.result);
+                }
+                reader.readAsDataURL(e.files[0]);
+            }
+        }
+
+        function resetImage() {
+            document.getElementById('prof').src = "../<?= substr($user->getProfile_image(), 1); ?>";
+        }
+    </script>
 </body>
 
 </html>

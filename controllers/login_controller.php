@@ -29,7 +29,7 @@ if (isset($_POST['signInSubmit'])) {
 
     // Redirect to the site depending on whether there is an error or not
     if ($validUser) {
-        setcookie("user", $user->getUser_name(), time() + 60 * 60 * 24, '/');
+        setcookie("user", $user->getId(), time() + 60 * 60 * 24, '/');
         header('Location:views/menu_view.php');
     } else {
         echo "<p>Error de autenticación: contraseña o nombre de usuario erróneos</p>";
@@ -56,7 +56,7 @@ if (isset($_POST['signInSubmit'])) {
             $folder = 'profile_images/' . $_POST['newUserName'];
             mkdir(dirname(__DIR__) . '/' . $folder);
             $profileImageSrc = $folder . '/' . $_FILES["profileImage"]["name"];
-            $res = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../' . $profileImageSrc);
+            $res = move_uploaded_file($_FILES['profileImage']['tmp_name'], dirname(__DIR__) . '/' . $profileImageSrc);
             if (!$res) {
                 echo "<p>Error al subir imagen de perfil</p>";
             }
@@ -64,8 +64,8 @@ if (isset($_POST['signInSubmit'])) {
             $profileImageSrc = 'profile_images/default.png';
         }
         $newUser = new User($_POST['newUserName'], $_POST['newPassword'], $profileImageSrc);
-        $conn->insertUser($newUser);
-        setcookie("user", $newUser->getUser_name(), time() + 60 * 60 * 24, '/');
+        $newUser->setId($conn->insertUser($newUser));
+        setcookie("user", $newUser->getId(), time() + 60 * 60 * 24, '/');
         header('Location:views/menu_view.php');
     }
 }

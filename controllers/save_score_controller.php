@@ -7,7 +7,7 @@ require_once('../models/user_model.php');
 $conn = new Connection();
 
 
-$user_data = $conn->getUserByUserName($_COOKIE['user']);
+$user_data = $conn->getUserById($_COOKIE['user']);
 $user = new User($user_data['user_name'], $user_data['passwd'], $user_data['profile_image'], $user_data['id']);
 $newScore = new Score($user, $_GET['game'], $_GET['score'], $_GET['time']);
 
