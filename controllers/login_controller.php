@@ -9,7 +9,7 @@ if (isset($_POST['logout'])) {
 }
 
 if (isset($_COOKIE['user'])) {
-    header('location:http://localhost/juegos/views/menu_view.php');
+    header('location:views/menu_view.php');
 }
 $conn = new Connection();
 $users_array = $conn->getAllUsers();
