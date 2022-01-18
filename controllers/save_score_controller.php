@@ -15,7 +15,9 @@ $score_data = $conn->getScoreByUser($newScore->getGame(), $user);
 
 if ($score_data == null) {
     $conn->insertScore($newScore, $user);
-} else if ($newScore->getScore() > $score_data['score']) {
+} else if (($newScore->getScore() > $score_data['score']) ||
+    ($newScore->getScore() == $score_data['score'] && $newScore->getTime() < $score_data['time'])
+) {
     $lastScore = new Score($user, $score_data['game'], $score_data['score'], $score_data['time'], $score_data['id']);
     $conn->updateScore($lastScore, $newScore);
 }
