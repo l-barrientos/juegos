@@ -9,7 +9,7 @@ $cn = new Connection();
 $user_data = $cn->getUserById($_COOKIE['user']);
 $user = new User($user_data['user_name'], $user_data['passwd'], $user_data['profile_image'], $user_data['id']);
 $users_array = $cn->getAllUsers();
-require_once(dirname(__DIR__) . '/views/edit_profile_view.php');
+
 
 if (isset($_POST['updateInfo'])) {
     if ($_POST['newUserName'] != $user->getUser_name()) {
@@ -32,7 +32,7 @@ if (isset($_POST['updateInfo'])) {
         if (!$res) {
             echo "<p>Error al subir imagen de perfil</p>";
         } else {
-            $user->getProfile_image() != 'profile_image/default.png' ? unlink('../' . $user->getProfile_image()) : '';
+            $user->getProfile_image() != 'profile_images/default.png' ? unlink('../' . $user->getProfile_image()) : '';
             $user->setProfile_image($profileImageSrc);
         }
     }
@@ -41,7 +41,7 @@ if (isset($_POST['updateInfo'])) {
 } else if (isset($_POST['updatePasswd'])) {
     if (password_verify($_POST['currentPasswd'], $user->getPasswd())) {
         if ($_POST['newPasswd'] == $_POST['repeatedNewPasswd']) {
-            $user->setPasswd(password_hash($_POST[['newPasswd']], PASSWORD_DEFAULT));
+            $user->setPasswd(password_hash($_POST['newPasswd'], PASSWORD_DEFAULT));
             $cn->updateUserPasswd($user, $user->getPasswd());
             echo '<p>Contraseña actualizada correctamente</p>';
         } else {
@@ -51,3 +51,4 @@ if (isset($_POST['updateInfo'])) {
         echo '<p>Contraseña actual incorrecta</p>';
     }
 }
+require_once(dirname(__DIR__) . '/views/edit_profile_view.php');

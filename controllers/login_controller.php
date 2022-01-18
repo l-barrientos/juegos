@@ -14,7 +14,7 @@ if (isset($_COOKIE['user'])) {
 }
 $conn = new Connection();
 $users_array = $conn->getAllUsers();
-require_once(dirname(__DIR__) . '/views/login_view.php');
+
 // Check whether sign in prcoess is done
 if (isset($_POST['signInSubmit'])) {
     $validUser = false;
@@ -70,3 +70,4 @@ if (isset($_POST['signInSubmit'])) {
         header('Location:views/menu_view.php');
     }
 }
+require_once(dirname(__DIR__) . '/views/login_view.php');
