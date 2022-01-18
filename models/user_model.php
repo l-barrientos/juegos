@@ -8,7 +8,7 @@ class User implements JsonSerializable {
 
     function __construct($user_name, $passwd, $profile_image, $id = '') {
         $this->user_name = $user_name;
-        $this->passwd = password_hash($passwd, PASSWORD_DEFAULT);
+        $this->passwd = $id == '' ?  password_hash($passwd, PASSWORD_DEFAULT) : $passwd;
         $this->profile_image = $profile_image;
         $this->id = $id;
     }
