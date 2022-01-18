@@ -22,5 +22,7 @@ if ($score_data == null) {
     $conn->updateScore($lastScore, $newScore);
 }
 
-
-header('location:scores_controller.php?game=' . $_GET['game']);
+?>
+<script>
+    location.replace('scores_controller.php?game=<?= $_GET['game']; ?>');
+</script>
