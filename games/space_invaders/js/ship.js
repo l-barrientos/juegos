@@ -15,7 +15,7 @@ class Ship {
   move(key, v) {
     switch (key) {
       case "ArrowRight":
-        if (this.x + this.layer.offsetWidth < window.innerWidth) {
+        if (this.x + this.layer.offsetWidth < window.innerWidth-20) {
           this.x = parseInt(this.x) + parseInt(v);
         }
         break;

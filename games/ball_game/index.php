@@ -3,6 +3,7 @@
 <html>
 
 <head>
+    <link rel="icon" type="image/png" href="img/ball.png">
   <script src="js/obstacle.js"></script>
   <script src="js/objective.js"></script>
   <script src="js/functions.js"></script>

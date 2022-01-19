@@ -5,6 +5,7 @@ let respawnTime = 3000;
 var invadersV = 1;
 var amo = 5;
 this.onload = () => {
+  document.getElementById("playButton").focus();
   document.getElementById("playButton").addEventListener("click", startGame);
 };
 
