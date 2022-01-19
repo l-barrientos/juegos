@@ -7,6 +7,7 @@
   <script src="js/functions.js"></script>
   <script src="js/invaders.js"></script>
   <script src="js/main.js"></script>
+  <link rel="icon" type="image/png" href="img/invaders.png">
   <link rel="stylesheet" href="style.css" />
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

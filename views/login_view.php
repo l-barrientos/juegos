@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+      <link rel="icon" type="image/png" href="views/img/kola.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

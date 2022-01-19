@@ -12,7 +12,7 @@ class Connection {
         /*$this->host = 'localhost';
         $this->user = 'id17980902_root';
         $this->pass = 'SuperRoot00#';
-        $this->name = 'id17980902_games'; */
+        $this->name = 'id17980902_games';*/
 
         //LOCAL HOST CONFIG
         $this->host = 'localhost';

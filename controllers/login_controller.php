@@ -67,7 +67,7 @@ if (isset($_POST['signInSubmit'])) {
         $newUser = new User($_POST['newUserName'], $_POST['newPassword'], $profileImageSrc);
         $newUser->setId($conn->insertUser($newUser));
         setcookie("user", $newUser->getId(), time() + 60 * 60 * 24, '/');
-        header('Location:views/menu_view.php');
+        header('Location:controllers/menu_controller.php');
     }
 }
 require_once(dirname(__DIR__) . '/views/login_view.php');
