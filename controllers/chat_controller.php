@@ -6,7 +6,7 @@ $conn = new Connection();
 $messages_array = $conn->getMessages();
 
 
-if (isset($_POST['submit_message'])) {
+if (isset($_POST['submit_message']) &&  !empty($_POST['message_text']) && !ctype_space($_POST['message_text'])) {
     $conn->insertMessage($_COOKIE['user'], $_POST['message_text']);
     header('location: ./chat_controller.php');
 }
