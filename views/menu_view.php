@@ -26,7 +26,10 @@
   <a href="../controllers/edit_profile_controller.php"><button style="margin-left: 10%" class="btn btn-primary">
       EDITAR PERFIL
     </button></a>
-  <form style=' margin-left:65%;margin-bottom:3%;margin-top:-3%;' action="../" method='post'>
+  <a href="../controllers/chat_controller.php"><button style="margin-left: 10%" class="btn btn-primary">
+      CHAT
+    </button></a>
+  <form style=' margin-left:80%;margin-bottom:3%;margin-top:-3%;' action="../" method='post'>
 
     <input style='margin-left:10%;' class="btn btn-danger" type="submit" value="CERRAR SESIÓN" name="logout" />
   </form>
