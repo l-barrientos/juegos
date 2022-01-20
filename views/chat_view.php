@@ -43,41 +43,51 @@
     }, 5);
 
     function showMessages(table) {
+        let row = '';
+        let imgTd = '';
+        let img = '';
+        let tdName = '';
+        let tdNameText = '';
+        let tdMsg = '';
+        let tdMsgText = '';
+        let tdDate = '';
+        let tdDateText = '';
         <?php
         $messages_array = $conn->getMessages();
-        $i = 0;
+
+
         foreach ($messages_array as $msg) {
             $date = date('H:i', strtotime($msg['date']));
 
         ?>
 
-            let row<?= $i ?> = document.createElement('tr');
+            row = document.createElement('tr');
 
-            let imgTd<?= $i ?> = document.createElement('td');
-            imgTd<?= $i ?>.style = "width:7%;";
-            let img<?= $i ?> = document.createElement('img');
-            img<?= $i ?>.src = "../<?= $msg['profile_image'] ?>";
-            img<?= $i ?>.style = "width:75%;height:6%;border-radius:100%;";
-            imgTd<?= $i ?>.appendChild(img<?= $i ?>);
-            row<?= $i ?>.appendChild(imgTd<?= $i ?>);
+            imgTd = document.createElement('td');
+            imgTd.style = "width:7%;";
+            img = document.createElement('img');
+            img.src = "../<?= $msg['profile_image'] ?>";
+            img.style = "width:75%;height:6%;border-radius:100%;";
+            imgTd.appendChild(img);
+            row.appendChild(imgTd);
 
-            let tdName<?= $i ?> = document.createElement('td');
-            let tdNameText<?= $i ?> = document.createTextNode("<?= $msg['name'] ?>");
-            tdName<?= $i ?>.appendChild(tdNameText<?= $i ?>);
-            row<?= $i ?>.appendChild(tdName<?= $i ?>);
+            tdName = document.createElement('td');
+            tdNameText = document.createTextNode("<?= $msg['user_name'] ?>");
+            tdName.appendChild(tdNameText);
+            row.appendChild(tdName);
 
-            let tdMsg<?= $i ?> = document.createElement('td');
-            let tdMsgText<?= $i ?> = document.createTextNode("<?= $msg['message'] ?>");
-            tdMsg<?= $i ?>.appendChild(tdMsgText<?= $i ?>);
-            row<?= $i ?>.appendChild(tdMsg<?= $i ?>);
+            tdMsg = document.createElement('td');
+            tdMsgText = document.createTextNode("<?= $msg['message'] ?>");
+            tdMsg.appendChild(tdMsgText);
+            row.appendChild(tdMsg);
 
-            let tdDate<?= $i ?> = document.createElement('td');
-            let tdDateText<?= $i ?> = document.createTextNode("<?= $date ?>");
-            tdDate<?= $i ?>.appendChild(tdDateText<?= $i ?>);
-            row<?= $i ?>.appendChild(tdDate<?= $i ?>);
+            tdDate = document.createElement('td');
+            tdDateText = document.createTextNode("<?= $date ?>");
+            tdDate.appendChild(tdDateText);
+            row.appendChild(tdDate);
 
-            table.appendChild(row<?= $i ?>);
-        <?php $i++;
+            table.appendChild(row);
+        <?php
         } ?>
     }
 </script>
