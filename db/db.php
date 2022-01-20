@@ -9,10 +9,10 @@ class Connection {
     function __construct() {
 
         //WEB HOST CONFIG 
-        /*$this->host = 'localhost';
-        $this->user = 'id17980902_root';
+        /* $this->host = 'localhost';
+        $this->user = 'hcfwtifi_root';
         $this->pass = 'SuperRoot00#';
-        $this->name = 'id17980902_games';*/
+        $this->name = 'hcfwtifi_games'; */
 
         //LOCAL HOST CONFIG
         $this->host = 'localhost';
@@ -141,6 +141,29 @@ class Connection {
         $sql = "UPDATE scores 
         SET score=" . $new_score->getScore() . ", time=" . $new_score->getTime() . ", date='" . $new_score->getDate() . "'
         WHERE id=" . $last_score->getId() . ";";
+        try {
+            $this->cn->exec($sql);
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
+
+    // MESSAGES ***************************
+
+    public function getMessages() {
+        $sql = "SELECT * FROM messages m JOIN users u ON m.id_user=u.id  ORDER BY date ASC ;";
+        try {
+            $prep = $this->cn->prepare($sql);
+            $prep->execute();
+            return $prep->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
+
+    public function insertMessage($id_user, $message) {
+        $sql = "INSERT INTO messages (id_user, message)
+        VALUES (" . $id_user . ", '" . $message . "');";
         try {
             $this->cn->exec($sql);
         } catch (PDOException $err) {

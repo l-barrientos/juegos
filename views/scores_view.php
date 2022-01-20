@@ -15,7 +15,7 @@
     <div style='margin-left:10%;margin-right:10%;'>
         <br><br><a href="../controllers/menu_controller.php"><button class="btn btn-primary">Menú Principal</button></a><br><br>
         <h2>Space Invaders</h2>
-         <table class=" table">
+        <table class=" table">
             <thead class="thead-light">
                 <tr>
                     <th style="width: 13%;">#</th>
@@ -29,7 +29,7 @@
             </thead>
 
         </table>
-        <div style="overflow: scroll; height:500px; margin-top: -17px;">
+        <div style="overflow-y: scroll; height:500px; margin-top: -17px;">
             <table class="table">
                 <?php
 
@@ -84,7 +84,7 @@
             </thead>
 
         </table>
-        <div style="overflow: scroll; height:500px; margin-top: -17px;">
+        <div style="overflow-y: scroll; height:500px; margin-top: -17px;">
             <table class="table">
                 <?php
 
@@ -125,8 +125,10 @@
         </div><br><br>
 
         <a href="../controllers/menu_controller.php"><button class="btn btn-primary">Menú Principal</button></a><br>
+        <br><br>
 
     </div>
 </body>
+
 
 </html>
