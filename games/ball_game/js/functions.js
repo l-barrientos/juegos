@@ -27,7 +27,7 @@ function generateObjectives(maxObjectives) {
 // Function to update time div
 function updateTime() {
   let timeDiv = document.getElementById("time");
-  let time = parseFloat(timeDiv.innerHTML.substr(8));
+  let time = parseFloat(timeDiv.innerHTML.substring(8));
   time += 0.01;
   timeDiv.innerHTML = "Tiempo: " + time.toFixed(2);
 }
@@ -56,7 +56,7 @@ function youWin() {
   let time = document.getElementById("time").innerHTML.substr(8);
   let youWinP2 = document.createElement("p");
   let youWinNode2 = document.createTextNode(
-    "Has ganado en " + time + " segundos",
+    "Has ganado en " + time + " segundos"
   );
   youWinP2.appendChild(youWinNode2);
 
@@ -102,7 +102,7 @@ async function gameOver() {
   let time = document.getElementById("time").innerHTML.substring(8);
   let gameOverP2 = document.createElement("p");
   let gameOverNode2 = document.createTextNode(
-    "Has durado " + time + " segundos",
+    "Has durado " + time + " segundos"
   );
   gameOverP2.appendChild(gameOverNode2);
 
@@ -166,10 +166,10 @@ function getCookie(cName) {
 }
 function saveScore() {
   let score = parseInt(
-    document.getElementById("points").innerHTML.substring(8),
+    document.getElementById("points").innerHTML.substring(8)
   );
   let time = parseFloat(
-    document.getElementById("time").innerHTML.substring(8),
+    document.getElementById("time").innerHTML.substring(8)
   ).toFixed(2);
 
   window.location =
