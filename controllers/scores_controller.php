@@ -5,6 +5,8 @@ require_once(dirname(__DIR__) . '/models/score_model.php');
 $conn = new Connection();
 $space_invaders_scores = $conn->getScoresOrdered('space_invaders');
 $ball_game_scores = $conn->getScoresOrdered('ball_game');
+$bricks_breaker_scores = $conn->getScoresOrdered('bricks_breaker');
+
 
 
 $current_user = $conn->getUserById($_COOKIE['user']);

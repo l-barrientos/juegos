@@ -41,6 +41,10 @@
     <a href=" ../games/ball_game/"><img style="margin-left:7%;width:15%;height:15%;border-radius:30px;" src="../views/img/ball_game.png"></a>
     <img style="margin-left:15%;width:40%;height:40%;border-radius:10px;border:1px solid black;" src="../views/img/ball_game.gif">
   </div>
+  <div style="margin-top:5%;">
+    <a href=" ../games/bricks_breaker/"><img style="margin-left:7%;width:16%;height:15%;border-radius:30px;" src="../views/img/bricks_breaker.png"></a>
+    <img style="margin-left:14%;width:40%;height:40%;border-radius:10px;border:1px solid black;" src="../views/img/bricks_breaker.gif">
+  </div>
   <footer style='margin-top:5%;background-color:black; padding:3%;'>
     <p style='text-align:center;color:white'>Desarrollado por Kolaryx&Co</p>
   </footer>
