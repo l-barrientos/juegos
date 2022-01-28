@@ -30,7 +30,7 @@ this.onload = function () {
     if (started) {
       updateTime();
     }
-  }, 1);
+  }, 10);
 
   movement = setInterval(() => {
     if (started) {
@@ -87,7 +87,7 @@ function drawBrick() {
 
 function updateTime() {
   let timeDiv = document.getElementById("time");
-  let time = parseFloat(timeDiv.innerHTML.substr(8));
+  let time = parseFloat(timeDiv.innerHTML.substring(8));
   time += 0.01;
   timeDiv.innerHTML = "Tiempo: " + time.toFixed(2);
 }

@@ -37,7 +37,7 @@ class Stick {
   }
 
   mousemove(x) {
-    if (x + 160 <= window.innerWidth) {
+    if (x + 180 <= window.innerWidth) {
       this.x = x - 100;
       this.layer.style.left = x + "px";
     }
@@ -87,7 +87,10 @@ class Ball {
   }
 
   checkWindowCollision() {
-    if (this.x >= window.innerWidth - 35 || this.x <= 0) {
+    if (
+      this.x + this.layer.offsetWidth >= window.innerWidth - 15 ||
+      this.x <= 0
+    ) {
       this.vx = -this.vx;
     }
 
