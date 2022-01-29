@@ -6,10 +6,15 @@ var ball;
 var started = false;
 var movement;
 var timeInterval;
+var finished;
 
 var xpos = [];
 var difx = 140;
-var inix = window.innerWidth / 13;
+if (window.innerWidth >= 1800) {
+  inix = window.innerWidth / 5;
+} else {
+  inix = window.innerWidth / 13;
+}
 for (let i = 0; i < 8; i++) {
   xpos[i] = inix + difx * i;
 }
@@ -48,7 +53,7 @@ this.onload = function () {
 };
 
 function start() {
-  document.getElementById("menu").style.visibility = "hidden";
+  document.getElementById("menu").remove();
   document.getElementById("stats").style.visibility = "visible";
   drawBrick();
 
@@ -61,11 +66,9 @@ function start() {
       event.preventDefault();
       stick.mousemove(event.clientX);
     },
-    true
+    true,
   );
-
-  document.body.style.cssText =
-    "padding-bottom:45%; padding-top:18%; cursor:none;";
+  document.querySelector("*").style = "cursor:none;";
 }
 
 function drawBrick() {
@@ -80,7 +83,6 @@ function drawBrick() {
       i++;
       div.appendChild(brick.layer);
     }
-    div.style.cssText = "margin-top : 15px";
     document.body.appendChild(div);
   }
 }
@@ -105,7 +107,7 @@ function getCookie(cName) {
 function saveScore() {
   let score = parseInt(document.getElementById("score").innerHTML.substring(8));
   let time = parseFloat(
-    document.getElementById("time").innerHTML.substring(8)
+    document.getElementById("time").innerHTML.substring(8),
   ).toFixed(2);
 
   window.location =

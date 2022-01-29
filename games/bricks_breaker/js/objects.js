@@ -37,7 +37,7 @@ class Stick {
   }
 
   mousemove(x) {
-    if (x + 180 <= window.innerWidth) {
+    if (x + this.layer.offsetWidth <= window.innerWidth && !finished) {
       this.x = x - 100;
       this.layer.style.left = x + "px";
     }
@@ -47,7 +47,7 @@ class Stick {
 class Ball {
   constructor() {
     this.y = 600;
-    this.x = Math.random() * window.innerWidth - 35;
+    this.x = Math.random() * (window.innerWidth - 100) + 50;
     this.vx = Math.random() * 10 >= 5 ? 2 : -2;
     this.vy = -2;
     this.layer = document.createElement("div");
@@ -151,6 +151,7 @@ class Ball {
     if (this.y >= window.innerHeight - 35) {
       clearInterval(movement);
       clearInterval(timeInterval);
+      finished = true;
 
       let gameOverDiv = document.createElement("div");
       gameOverDiv.setAttribute("id", "gameOverDiv");
@@ -162,7 +163,7 @@ class Ball {
       let time = document.getElementById("time").innerHTML.substring(8);
       let gameOverP2 = document.createElement("p");
       let gameOverNode2 = document.createTextNode(
-        "Has durado " + time + " segundos"
+        "Has durado " + time + " segundos",
       );
       gameOverP2.appendChild(gameOverNode2);
 
@@ -192,8 +193,8 @@ class Ball {
       gameOverDiv.appendChild(saveButton);
       document.body.appendChild(gameOverDiv);
 
-      document.body.style.cssText =
-        "padding-bottom:45%; padding-top:18%; cursor:auto;";
+      document.querySelector("*").style = "cursor:auto;";
+      console.log(document.body.style);
     }
   }
 }
