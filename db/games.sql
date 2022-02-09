@@ -27,6 +27,10 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `scores`
 --
 
+DROP DATABASE `games`;
+CREATE DATABASE `games`;
+use games
+
 CREATE TABLE `scores` (
   `id` int(10) NOT NULL,
   `id_user` int(10) NOT NULL,
@@ -43,7 +47,7 @@ CREATE TABLE `scores` (
 --
 
 CREATE TABLE `users` (
-  `id` int(10) NOT NULL,
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `passwd` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `profile_image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
@@ -61,27 +65,17 @@ CREATE TABLE `messages` (
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
---
--- Indices de la tabla `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_users_messages` (`id_user`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
-
 --
 -- Restricciones para tablas volcadas
 --
+
+
+--
+-- Indices de la tabla `users`
+--
+
+ALTER TABLE `users`
+  ADD UNIQUE KEY `uk_constraint_user_name` (`user_name`);
 
 --
 -- Filtros para la tabla `messages`
@@ -97,39 +91,35 @@ ALTER TABLE `scores`
   ADD KEY `fk_foreign_key_id_user` (`id_user`);
 
 --
--- Indices de la tabla `users`
+-- Indices de la tabla `messages`
 --
-ALTER TABLE `users`
+ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uk_constraint_user_name` (`user_name`);
+  ADD KEY `fk_users_messages` (`id_user`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `users`
+
+
+--
 -- AUTO_INCREMENT de la tabla `scores`
 --
 ALTER TABLE `scores`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;--
 
 --
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT de la tabla `messages`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+ALTER TABLE `messages`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `scores`
---
-ALTER TABLE `scores`
-  ADD CONSTRAINT `fk_foreign_key_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

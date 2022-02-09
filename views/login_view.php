@@ -33,7 +33,7 @@
         <div style='margin-left:37%;margin-right:40%;margin-top:1%;'>
             <div class="form-group">
                 <label for="newUserName">Usuario (*)</label>
-                <input type="text" class="form-control" name="newUserName" id="newUserName" />
+                <input type="text" class="form-control" name="newUserName" id="newUserName" pattern="[^' ']+" title="No se permiten espacios" />
             </div>
             <div class="form-group">
                 <label for="newPassword">Contraseña (*)</label>

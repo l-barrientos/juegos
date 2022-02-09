@@ -15,9 +15,20 @@
     <br><br>
     <div style='margin-left:10%;margin-right:10%;'>
         <h2>Chat</h2>
-        <div id='chat' style="overflow-y: scroll; height:400px;">
-            <table class="table" id="messages">
+        <div id='chat' style="overflow-y: scroll; height:600px;">
+            <table class="table">
+                <?php
+                foreach ($messages_array as $msg) {
+                    $date = date('H:i', strtotime($msg['date']));
 
+                ?>
+                    <tr>
+                        <td style='width:7%;'> <?= "<img style='width:75%;height:6%;border-radius:100%;' src='" . '../' . $msg['profile_image'] . "' />"; ?></td>
+                        <td><b><?= $msg['user_name'] ?></b></td>
+                        <td><?= $msg['message'] ?></td>
+                        <td><?= $date ?></td>
+                    </tr>
+                <?php } ?>
             </table>
         </div>
         <form action="../controllers/chat_controller.php" method="post">
@@ -37,59 +48,6 @@
 <script>
     document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
     document.getElementById('message_text').focus();
-    setInterval(() => {
-        document.getElementById('messages').innerHTML = '';
-        showMessages(document.getElementById('messages'));
-    }, 5);
-
-    function showMessages(table) {
-        let row = '';
-        let imgTd = '';
-        let img = '';
-        let tdName = '';
-        let tdNameText = '';
-        let tdMsg = '';
-        let tdMsgText = '';
-        let tdDate = '';
-        let tdDateText = '';
-        <?php
-        $messages_array = $conn->getMessages();
-
-
-        foreach ($messages_array as $msg) {
-            $date = date('H:i', strtotime($msg['date']));
-
-        ?>
-
-            row = document.createElement('tr');
-
-            imgTd = document.createElement('td');
-            imgTd.style = "width:7%;";
-            img = document.createElement('img');
-            img.src = "../<?= $msg['profile_image'] ?>";
-            img.style = "width:75%;height:6%;border-radius:100%;";
-            imgTd.appendChild(img);
-            row.appendChild(imgTd);
-
-            tdName = document.createElement('td');
-            tdNameText = document.createTextNode("<?= $msg['user_name'] ?>");
-            tdName.appendChild(tdNameText);
-            row.appendChild(tdName);
-
-            tdMsg = document.createElement('td');
-            tdMsgText = document.createTextNode("<?= $msg['message'] ?>");
-            tdMsg.appendChild(tdMsgText);
-            row.appendChild(tdMsg);
-
-            tdDate = document.createElement('td');
-            tdDateText = document.createTextNode("<?= $date ?>");
-            tdDate.appendChild(tdDateText);
-            row.appendChild(tdDate);
-
-            table.appendChild(row);
-        <?php
-        } ?>
-    }
 </script>
 
 </html>

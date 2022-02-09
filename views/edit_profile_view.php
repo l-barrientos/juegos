@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <a href="../controllers/menu_controller.php"><button style='position:absolute;margin-left: 3%;margin-top:2%;' class="btn btn-danger">Volver al menú</button></a>
     <h2 style='text-align:center;margin-top:1%;'>Editar perfil</h2>
     <form style='margin-top:1%;margin-left:37%;margin-right:40%;' enctype="multipart/form-data" onreset="resetImage()" action="../controllers/edit_profile_controller.php" method="post">

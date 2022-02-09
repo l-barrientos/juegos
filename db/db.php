@@ -17,7 +17,7 @@ class Connection {
         //LOCAL HOST CONFIG
         $this->host = 'localhost';
         $this->user = 'root';
-        $this->pass = '';
+        $this->pass = 'root';
         $this->name = 'games';
         try {
             $this->cn = new PDO("mysql:dbname=$this->name;host=$this->host", $this->user, $this->pass);
