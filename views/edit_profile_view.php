@@ -29,7 +29,7 @@
         echo "<img id='prof' style='width:30%;height:6%;border-radius:100%;' src='" . '../' . $user->getProfile_image() . "' />";
         ?><br><br>
         <input type="submit" name='updateInfo' class="btn btn-primary" value="Guardar">
-        <input type="reset" class="btn btn-danger" value="Cancelar">
+        
 
     </form>
 
