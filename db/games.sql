@@ -50,45 +50,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
---
--- Estructura de tabla para la tabla `messages`
---
 
-CREATE TABLE `messages` (
-  `id` int(10) NOT NULL,
-  `id_user` int(10) NOT NULL,
-  `message` text NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
---
--- Indices de la tabla `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_users_messages` (`id_user`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `messages`
---
-ALTER TABLE `messages`
-  ADD CONSTRAINT `fk_users_messages` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
-COMMIT;
 --
 -- Indices de la tabla `scores`
 --
