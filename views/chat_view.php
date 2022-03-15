@@ -44,7 +44,7 @@
         document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
     }
     document.getElementById('message_text').focus();
-
+    var loaded = false;
     var firebaseConfig = {
         apiKey: "AIzaSyDi3O6dTbt4mPUb-wG3dpGGVPkF9ajV8u8",
         authDomain: "first-test-7a493.firebaseapp.com",
@@ -95,6 +95,7 @@
                 tr.innerHTML = " <td style='width:7%;'> <img style='width:75%;height:6%;border-radius:100%;' src='../" + element.img + "' /></td><td><b>" + element.name + " </b></td><td>" + element.msg + "</td><td>" + element.date + "</td>";
                 document.getElementById('chatTable').appendChild(tr);
             });
+            loaded = true;
             scrollChat();
         });
     }
@@ -103,13 +104,15 @@
         let lastRef = firebase.database().ref("chat").limitToLast(1);
 
         lastRef.on("value", (snapshot) => {
-            snapshot.forEach((e) => {
-                let element = e.val();
-                let tr = document.createElement('tr');
-                tr.innerHTML = " <td style='width:7%;'> <img style='width:75%;height:6%;border-radius:100%;' src='../" + element.img + "' /></td><td><b>" + element.name + " </b></td><td>" + element.msg + "</td><td>" + element.date + "</td>";
-                document.getElementById('chatTable').appendChild(tr);
-                scrollChat();
-            });
+            if (loaded) {
+                snapshot.forEach((e) => {
+                    let element = e.val();
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = " <td style='width:7%;'> <img style='width:75%;height:6%;border-radius:100%;' src='../" + element.img + "' /></td><td><b>" + element.name + " </b></td><td>" + element.msg + "</td><td>" + element.date + "</td>";
+                    document.getElementById('chatTable').appendChild(tr);
+                    scrollChat();
+                });
+            }
         });
     }
     this.onload = () => {
